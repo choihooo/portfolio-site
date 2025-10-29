@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>최호 - 프론트엔드 개발자</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Arial", sans-serif;
+        line-height: 1.6;
+        color: #333;
+      }
+
+      header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 2rem 0;
+        text-align: center;
+      }
+
+      nav {
+        background: #f8f9fa;
+        padding: 1rem 0;
+        text-align: center;
+      }
+
+      nav ul {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+      }
+
+      nav a {
+        text-decoration: none;
+        color: #333;
+        font-weight: bold;
+      }
+
+      main {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+
+      section {
+        margin-bottom: 3rem;
+        padding: 2rem;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      aside {
+        background: #f8f9fa;
+        padding: 1.5rem;
+        border-radius: 8px;
+        margin-top: 2rem;
+      }
+
+      footer {
+        background: #333;
+        color: white;
+        text-align: center;
+        padding: 2rem 0;
+        margin-top: 3rem;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 2rem;
+      }
+
+      .card {
+        background: #f8f9fa;
+        padding: 1.5rem;
+        border-radius: 8px;
+        border-left: 4px solid #667eea;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>안녕하세요! 최호입니다 👋</h1>
+      <p>프론트엔드 개발을 공부하고 있는 개발자입니다</p>
+    </header>
+
+    <nav>
+      <ul>
+        <li><a href="#about">소개</a></li>
+        <li><a href="#skills">기술</a></li>
+        <li><a href="#hobbies">취미</a></li>
+        <li><a href="#contact">연락처</a></li>
+      </ul>
+    </nav>
+
+    <main>
+      <div class="grid">
+        <article>
+          <section id="about">
+            <h2>자기소개</h2>
+
+            <p>
+              안녕하세요! 프론트엔드 개발을 공부하고 있는 최호입니다. 사용자
+              경험을 중시하며, 깔끔하고 직관적인 웹사이트를 만드는 것을 목표로
+              하고 있습니다.
+            </p>
+          </section>
+
+          <section id="hobbies">
+            <h2>취미 & 관심사</h2>
+            <ul>
+              <li>코딩 공부 💻</li>
+              <li>운동 💪</li>
+              <li>새로운 기술 탐구 🔍</li>
+            </ul>
+          </section>
+        </article>
+
+        <aside>
+          <div>구름 화이팅</div>
+        </aside>
+      </div>
+    </main>
+
+    <footer>
+      <p>📧 이메일: hochoi8621@gmail.com</p>
+      <p>
+        🐙 GitHub:
+        <a
+          href="https://github.com/choihooo"
+          target="_blank"
+          rel="noopener noreferrer"
+          style="color: white; text-decoration: none; cursor: pointer"
+          >https://github.com/choihooo</a
+        >
+      </p>
+      <p>
+        💼 LinkedIn:
+        <a
+          href="https://www.linkedin.com/in/howuchoi/"
+          target="_blank"
+          rel="noopener noreferrer"
+          style="color: white; text-decoration: none; cursor: pointer"
+          >https://www.linkedin.com/in/howuchoi/</a
+        >
+      </p>
+    </footer>
+  </body>
+</html>
