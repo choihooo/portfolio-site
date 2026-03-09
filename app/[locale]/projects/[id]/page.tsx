@@ -1,23 +1,22 @@
-import {notFound} from 'next/navigation';
-import {useTranslations} from 'next-intl';
+import { notFound } from 'next/navigation';
 import ProjectsDetailClient from './client';
-import {getProjectById} from '@/lib/projects';
+import { getCollection } from '@content-collections/next';
 
 interface PageProps {
-  params: Promise<{locale: string; id: string}>;
+  params: Promise<{ locale: string; id: string }>;
 }
 
 export async function generateStaticParams() {
-  return [
-    {id: '001'},
-    {id: '002'},
-    {id: '003'},
-  ];
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({
+    id: project.slug,
+  }));
 }
 
-export async function generateMetadata({params}: PageProps) {
-  const {id, locale} = await params;
-  const project = getProjectById(id);
+export async function generateMetadata({ params }: PageProps) {
+  const { id } = await params;
+  const projects = await getCollection('projects');
+  const project = projects.find((p) => p.slug === id);
 
   if (!project) {
     return {
@@ -26,14 +25,15 @@ export async function generateMetadata({params}: PageProps) {
   }
 
   return {
-    title: `${project.name} | Project`,
-    description: project.desc,
+    title: `${project.title} | Project`,
+    description: project.description,
   };
 }
 
-export default async function ProjectDetailPage({params}: PageProps) {
-  const {id} = await params;
-  const project = getProjectById(id);
+export default async function ProjectDetailPage({ params }: PageProps) {
+  const { id } = await params;
+  const projects = await getCollection('projects');
+  const project = projects.find((p) => p.slug === id);
 
   if (!project) {
     notFound();
