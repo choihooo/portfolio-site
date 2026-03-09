@@ -1,0 +1,127 @@
+---
+title: "データフロー"
+description: "ダッシュボード分析プラットフォーム — データ可視化およびレポート作成"
+slug: "data-flow"
+tags: Python, TypeScript, Docker, Redis
+period: "2023.06 - 2023.12"
+teamSize: "3名"
+role: "フルスタック開発者"
+liveUrl: "https://example.com/data-flow"
+githubUrl: "https://github.com/username/data-flow"
+order: 2
+---
+
+import { TwoColumn } from '@/components/layouts';
+import { ThreeColumn, Column } from '@/components/layouts';
+
+## プロジェクト概要
+
+データフローは、ビジネスデータを可視化するための総合分析ダッシュボードです。リアルタイムモニタリングと自動化されたレポート作成機能を提供します。
+
+<TwoColumn>
+  <div>
+    ### 主な機能
+
+    - リアルタイムデータ可視化
+    - カスタムダッシュボード作成
+    - 自動レポート生成
+    - データエクスポート機能
+    - マルチユーザー協業
+  </div>
+
+  <div>
+    ### 技術スタック
+
+    - フロントエンド: TypeScript, React
+    - バックエンド: Python, FastAPI
+    - データベース: PostgreSQL, Redis
+    - デプロイ: Docker, AWS
+    - 可視化: D3.js
+  </div>
+</TwoColumn>
+
+## コア機能
+
+### 1. リアルタイムデータ可視化
+
+WebSocket接続を使用してリアルタイムチャートを実装しました。ページ更新なしでデータが自動的に更新されます。
+
+<TwoColumn>
+  <div>
+    **ユーザー体験**
+
+    - スムーズなアニメーション
+    - インタラクティブなチャート
+    - カスタム時間範囲
+    - 複数のチャートタイプ
+  </div>
+
+  <div>
+    **技術的実装**
+
+    - リアルタイム更新用WebSocket
+    - 可視化用D3.js
+    - キャッシュ用Redis
+    - 最適化されたクエリ性能
+  </div>
+</TwoColumn>
+
+### 2. カスタムダッシュボード
+
+ユーザーはウィジェットをドラッグ＆ドロップしてパーソナライズされたダッシュボードを作成できます。レイアウト永続性によりカスタマイズが保存されます。
+
+## プロジェクトギャラリー
+
+<ThreeColumn>
+  <Column>
+    ### 分析ダッシュボード
+
+    すべての主要指標とKPIを一箇所で総合的に確認できます。
+  </Column>
+
+  <Column>
+    ### カスタムレポート
+
+    カスタムフィルターと期間で詳細なレポートを生成します。
+  </Column>
+
+  <Column>
+    ### チーム協業
+
+    ダッシュボードとレポートをチームメンバーとシームレスに共有します。
+  </Column>
+</ThreeColumn>
+
+## 成果
+
+- レポート作成時間80%削減
+- 日次100万+データポイント処理
+- 50+アクティブユーザー
+- 99.5%稼働率
+
+## 技術的課題
+
+<TwoColumn>
+  <div>
+    **課題: 大規模データセット性能**
+
+    大規模データセットのロードと可視化によりページ読み込みが遅くなり、ブラウザがクラッシュしました。
+  </div>
+
+  <div>
+    **解決策: データページネーションとキャッシュ**
+
+    最適な性能のためにサーバーサイドページネーションとRedisキャッシュを実装しました。
+  </div>
+</TwoColumn>
+
+## 学んだこと
+
+1. データ可視化のベストプラクティス
+2. リアルタイムデータ処理
+3. 性能最適化技術
+4. 分析用ユーザー体験設計
+
+---
+
+**プロジェクトリンク:** [ライブデモ](https://example.com/data-flow) | [GitHub](https://github.com/username/data-flow)

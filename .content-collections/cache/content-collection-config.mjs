@@ -1,7 +1,6 @@
+// content-collections.ts
 import { defineCollection, defineConfig } from "@content-collections/next";
-import { compileMDX } from "@content-collections/mdx";
-
-const projects = defineCollection({
+var projects = defineCollection({
   name: "projects",
   directory: "content/projects",
   include: "*.mdx",
@@ -17,18 +16,12 @@ const projects = defineCollection({
     githubUrl: z.string().optional(),
     coverImage: z.string().optional(),
     order: z.number().optional(),
-    createdAt: z.string().optional(),
-  }),
-  transform: async (document, context) => {
-    const mdx = await compileMDX(context, document);
-    return {
-      ...document,
-      mdx,
-      slug: document.slug || document._meta.path,
-    };
-  },
+    createdAt: z.string().optional()
+  })
 });
-
-export default defineConfig({
-  collections: [projects],
+var content_collections_default = defineConfig({
+  collections: [projects]
 });
+export {
+  content_collections_default as default
+};

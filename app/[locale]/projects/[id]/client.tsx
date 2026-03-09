@@ -7,30 +7,41 @@ import { ArrowLeft, ExternalLink, Github, Calendar, Users } from 'lucide-react';
 import Link from 'next/link';
 import { useLocale } from 'next-intl';
 import Footer from '@/components/Footer';
+import { MDXRemote } from 'next-mdx-remote/rsc';
+import { TwoColumn, TwoColumnLeft, TwoColumnRight } from '@/components/layouts';
+import { ThreeColumn, Column } from '@/components/layouts';
 
-interface MDXProject {
-  _meta: {
-    path: string;
-    filePath: string;
-  };
+interface ProjectFrontmatter {
   title: string;
   description: string;
   slug: string;
-  tags?: string[];
+  tags: string[];
   period?: string;
   teamSize?: string;
   role?: string;
   liveUrl?: string;
   githubUrl?: string;
-  coverImage?: string;
   order?: number;
-  createdAt?: string;
-  mdx: any;
+}
+
+interface ProjectData {
+  slug: string;
+  locale: string;
+  frontmatter: ProjectFrontmatter;
+  mdxContent: string;
 }
 
 interface ProjectsDetailClientProps {
-  project: MDXProject;
+  project: ProjectData;
 }
+
+const components = {
+  TwoColumn,
+  TwoColumnLeft,
+  TwoColumnRight,
+  ThreeColumn,
+  Column,
+};
 
 export default function ProjectsDetailClient({ project }: ProjectsDetailClientProps) {
   const t = useTranslations('projectDetail');
@@ -65,11 +76,12 @@ export default function ProjectsDetailClient({ project }: ProjectsDetailClientPr
           '-=0.4'
         )
         .from(
-          '.detail-content',
+          '.detail-section',
           {
-            y: 40,
+            y: 30,
             opacity: 0,
             duration: 0.6,
+            stagger: 0.1,
           },
           '-=0.3'
         );
@@ -77,8 +89,6 @@ export default function ProjectsDetailClient({ project }: ProjectsDetailClientPr
 
     return () => ctx.revert();
   }, []);
-
-  const MDXContent = project.mdx;
 
   return (
     <div ref={sectionRef} className="min-h-screen bg-bg relative">
@@ -101,22 +111,20 @@ export default function ProjectsDetailClient({ project }: ProjectsDetailClientPr
       <main className="pt-32 pb-24 px-8 md:px-16 lg:px-24">
         <div className="max-w-5xl mx-auto">
           <div className="mb-16">
-            <p className="font-mono text-accent text-sm mb-6">
-              00{project.order || 1}
-            </p>
+            <p className="font-mono text-accent text-sm mb-6">{project.slug}</p>
 
             <h1 className="detail-header font-syne font-bold text-5xl md:text-7xl lg:text-8xl leading-none mb-8">
-              {project.title}
+              {project.frontmatter.title}
             </h1>
 
             <p className="detail-meta text-xl md:text-2xl text-text/80 max-w-3xl leading-relaxed">
-              {project.description}
+              {project.frontmatter.description}
             </p>
           </div>
 
-          {(project.period || project.teamSize || project.role) && (
+          {(project.frontmatter.period || project.frontmatter.teamSize || project.frontmatter.role) && (
             <div className="detail-meta grid md:grid-cols-3 gap-8 mb-16 py-12 border-y border-border">
-              {project.period && (
+              {project.frontmatter.period && (
                 <div>
                   <div className="flex items-center gap-3 mb-3">
                     <Calendar size={18} className="text-accent" />
@@ -124,11 +132,11 @@ export default function ProjectsDetailClient({ project }: ProjectsDetailClientPr
                       {t('period')}
                     </span>
                   </div>
-                  <p className="text-text font-mono">{project.period}</p>
+                  <p className="text-text font-mono">{project.frontmatter.period}</p>
                 </div>
               )}
 
-              {project.teamSize && (
+              {project.frontmatter.teamSize && (
                 <div>
                   <div className="flex items-center gap-3 mb-3">
                     <Users size={18} className="text-accent" />
@@ -136,11 +144,11 @@ export default function ProjectsDetailClient({ project }: ProjectsDetailClientPr
                       {t('team')}
                     </span>
                   </div>
-                  <p className="text-text font-mono">{project.teamSize}</p>
+                  <p className="text-text font-mono">{project.frontmatter.teamSize}</p>
                 </div>
               )}
 
-              {project.role && (
+              {project.frontmatter.role && (
                 <div>
                   <div className="flex items-center gap-3 mb-3">
                     <span className="text-accent">●</span>
@@ -148,20 +156,23 @@ export default function ProjectsDetailClient({ project }: ProjectsDetailClientPr
                       {t('role')}
                     </span>
                   </div>
-                  <p className="text-text font-mono">{project.role}</p>
+                  <p className="text-text font-mono">{project.frontmatter.role}</p>
                 </div>
               )}
             </div>
           )}
 
-          <div className="detail-content prose prose-invert max-w-none">
-            <MDXContent />
+          <div className="detail-content prose prose-invert prose-lg max-w-none prose-headings:font-syne prose-headings:text-text prose-h1:text-4xl prose-h2:text-3xl prose-h3:text-2xl prose-p:text-text/80 prose-a:text-accent prose-a:no-underline hover:prose-a:underline prose-strong:text-text prose-code:text-accent prose-pre:bg-bg2 prose-pre:border prose-pre:border-border">
+            <MDXRemote
+              source={project.mdxContent}
+              components={components}
+            />
           </div>
 
-          <div className="detail-section flex flex-wrap gap-6 pt-8 border-t border-border mt-16">
-            {project.liveUrl && (
+          <div className="detail-section flex flex-wrap gap-6 pt-8 border-t border-border">
+            {project.frontmatter.liveUrl && (
               <a
-                href={project.liveUrl}
+                href={project.frontmatter.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="detail-link inline-flex items-center gap-3 px-8 py-4 bg-accent text-bg font-mono font-bold text-sm hover:bg-accent/90 transition-colors"
@@ -171,9 +182,9 @@ export default function ProjectsDetailClient({ project }: ProjectsDetailClientPr
               </a>
             )}
 
-            {project.githubUrl && (
+            {project.frontmatter.githubUrl && (
               <a
-                href={project.githubUrl}
+                href={project.frontmatter.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="detail-link inline-flex items-center gap-3 px-8 py-4 border border-border text-text font-mono text-sm hover:border-accent hover:text-accent transition-colors"
