@@ -1,10 +1,10 @@
 import createMiddleware from 'next-intl/middleware';
-import { NextRequest } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
 export default function middleware(request: NextRequest) {
   // Skip middleware for /sanity path
   if (request.nextUrl.pathname.startsWith('/sanity')) {
-    return;
+    return NextResponse.next();
   }
 
   const intlMiddleware = createMiddleware({
