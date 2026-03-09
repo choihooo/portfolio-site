@@ -1,11 +1,21 @@
 import createMiddleware from 'next-intl/middleware';
+import { NextRequest } from 'next/server';
 
-export default createMiddleware({
-  locales: ['ko', 'en', 'ja'],
-  defaultLocale: 'ko',
-  localePrefix: 'always'
-});
+export default function middleware(request: NextRequest) {
+  // Skip middleware for /sanity path
+  if (request.nextUrl.pathname.startsWith('/sanity')) {
+    return;
+  }
+
+  const intlMiddleware = createMiddleware({
+    locales: ['ko', 'en', 'ja'],
+    defaultLocale: 'ko',
+    localePrefix: 'always'
+  });
+
+  return intlMiddleware(request);
+}
 
 export const config = {
-  matcher: ['/((?!api|_next|_vercel|sanity|.*\\..*).*)']
+  matcher: ['/((?!api|_next|_vercel|.*\\..*).*)', '/']
 };
