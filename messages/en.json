@@ -1,0 +1,87 @@
+{
+  "nav": {
+    "about": "About",
+    "projects": "Projects",
+    "skills": "Skills",
+    "contact": "Contact"
+  },
+  "hero": {
+    "eyebrow": "Available for work",
+    "name_line1": "YOUR",
+    "name_line2": "NAME",
+    "subtitle": "Fullstack Developer — Building meaningful things",
+    "cta": "View Work"
+  },
+  "about": {
+    "label": "01 — About",
+    "heading_line1": "Solving",
+    "heading_line2": "problems",
+    "heading_line3": "with code.",
+    "body1": "I love turning complex problems into simple solutions. I prioritize user experience and focus on writing clean, maintainable code that scales.",
+    "body2": "From startups to enterprises, I've worked on diverse projects and gained real-world experience. I'm always learning new technologies and striving to become a better developer.",
+    "stat1_num": "3+",
+    "stat1_label": "Years Experience",
+    "stat2_num": "12+",
+    "stat2_label": "Projects",
+    "stat3_num": "5+",
+    "stat3_label": "Clients"
+  },
+  "projects": {
+    "label": "02 — Projects",
+    "view": "View Project",
+    "items": [
+      {
+        "id": "001",
+        "name": "Project Alpha",
+        "desc": "Real-time collaboration platform — WebSocket-based team workspace",
+        "tags": ["React", "Node.js", "PostgreSQL", "WebSocket"]
+      },
+      {
+        "id": "002",
+        "name": "Data Flow",
+        "desc": "Dashboard analytics platform — Data visualization and reporting",
+        "tags": ["Python", "TypeScript", "Docker", "Redis"]
+      },
+      {
+        "id": "003",
+        "name": "Open Source CLI",
+        "desc": "Developer productivity tool — Terminal workflow automation",
+        "tags": ["Node.js", "CLI", "Open Source"]
+      }
+    ]
+  },
+  "skills": {
+    "label": "03 — Skills",
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "tools": "Tools",
+    "frontend_items": ["React", "Next.js", "TypeScript", "Tailwind CSS"],
+    "backend_items": ["Node.js", "Python", "PostgreSQL", "MongoDB"],
+    "tools_items": ["Git", "Docker", "AWS", "Figma"]
+  },
+  "contact": {
+    "label": "04 — Contact",
+    "heading_line1": "Let's",
+    "heading_line2": "build",
+    "heading_line3": "together.",
+    "sub": "New projects, collaboration proposals, or just saying hi — always welcome.",
+    "email_label": "Email",
+    "github_label": "GitHub",
+    "linkedin_label": "LinkedIn"
+  },
+  "footer": {
+    "role": "Fullstack Developer",
+    "location": "Seoul, South Korea"
+  },
+  "projectDetail": {
+    "back": "Back",
+    "period": "Project Period",
+    "team": "Team Size",
+    "role": "Role",
+    "overview": "Project Overview",
+    "features": "Key Features",
+    "techStack": "Tech Stack",
+    "liveDemo": "Live Demo",
+    "sourceCode": "Source Code"
+  }
+}

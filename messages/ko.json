@@ -1,0 +1,87 @@
+{
+  "nav": {
+    "about": "소개",
+    "projects": "프로젝트",
+    "skills": "스킬",
+    "contact": "연락처"
+  },
+  "hero": {
+    "eyebrow": "채용 가능",
+    "name_line1": "YOUR",
+    "name_line2": "NAME",
+    "subtitle": "풀스택 개발자 — 의미 있는 것을 만듭니다",
+    "cta": "작업물 보기"
+  },
+  "about": {
+    "label": "01 — 소개",
+    "heading_line1": "코드로",
+    "heading_line2": "문제를",
+    "heading_line3": "해결한다.",
+    "body1": "복잡한 문제를 간단한 솔루션으로 바꾸는 것을 좋아합니다. 사용자 경험을 최우선으로 생각하며, 깨끗하고 유지보수 가능한 코드를 작성하는 데 중점을 둡니다.",
+    "body2": "스타트업부터 엔터프라이즈까지 다양한 프로젝트에서 일하며 실무 경험을 쌓았습니다. 항상 새로운 기술을 배우고 더 나은 개발자가 되기 위해 노력합니다.",
+    "stat1_num": "3+",
+    "stat1_label": "년 경력",
+    "stat2_num": "12+",
+    "stat2_label": "프로젝트",
+    "stat3_num": "5+",
+    "stat3_label": "클라이언트"
+  },
+  "projects": {
+    "label": "02 — 프로젝트",
+    "view": "프로젝트 보기",
+    "items": [
+      {
+        "id": "001",
+        "name": "Project Alpha",
+        "desc": "실시간 협업 플랫폼 — WebSocket 기반 팀 워크스페이스",
+        "tags": ["React", "Node.js", "PostgreSQL", "WebSocket"]
+      },
+      {
+        "id": "002",
+        "name": "Data Flow",
+        "desc": "대시보드 분석 플랫폼 — 데이터 시각화 및 리포팅",
+        "tags": ["Python", "TypeScript", "Docker", "Redis"]
+      },
+      {
+        "id": "003",
+        "name": "Open Source CLI",
+        "desc": "개발자 생산성 도구 — 터미널 워크플로우 자동화",
+        "tags": ["Node.js", "CLI", "Open Source"]
+      }
+    ]
+  },
+  "skills": {
+    "label": "03 — 스킬",
+    "frontend": "프론트엔드",
+    "backend": "백엔드",
+    "tools": "툴",
+    "frontend_items": ["React", "Next.js", "TypeScript", "Tailwind CSS"],
+    "backend_items": ["Node.js", "Python", "PostgreSQL", "MongoDB"],
+    "tools_items": ["Git", "Docker", "AWS", "Figma"]
+  },
+  "contact": {
+    "label": "04 — 연락처",
+    "heading_line1": "같이",
+    "heading_line2": "만들어",
+    "heading_line3": "봐요.",
+    "sub": "새로운 프로젝트, 협업 제안, 또는 그냥 안녕이라도 — 언제든 환영합니다.",
+    "email_label": "이메일",
+    "github_label": "깃허브",
+    "linkedin_label": "링크드인"
+  },
+  "footer": {
+    "role": "풀스택 개발자",
+    "location": "서울, 대한민국"
+  },
+  "projectDetail": {
+    "back": "뒤로가기",
+    "period": "프로젝트 기간",
+    "team": "팀 규모",
+    "role": "역할",
+    "overview": "프로젝트 개요",
+    "features": "주요 기능",
+    "techStack": "기술 스택",
+    "liveDemo": "라이브 데모",
+    "sourceCode": "소스 코드"
+  }
+}

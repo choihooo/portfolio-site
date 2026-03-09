@@ -1,0 +1,87 @@
+{
+  "nav": {
+    "about": "自己紹介",
+    "projects": "プロジェクト",
+    "skills": "スキル",
+    "contact": "連絡先"
+  },
+  "hero": {
+    "eyebrow": "募集中",
+    "name_line1": "YOUR",
+    "name_line2": "NAME",
+    "subtitle": "フルスタック開発者 — 意味あるものを作る",
+    "cta": "作品を見る"
+  },
+  "about": {
+    "label": "01 — 自己紹介",
+    "heading_line1": "コードで",
+    "heading_line2": "問題を",
+    "heading_line3": "解決する。",
+    "body1": "複雑な問題をシンプルなソリューションに変えることが好きです。ユーザー体験を最優先に考え、クリーンで保守可能なコードを書くことに重点を置いています。",
+    "body2": "スタートアップからエンタープライズまで、様々なプロジェクトで実務経験を積んできました。常に新しい技術を学び、より良い開発者になるよう努力しています。",
+    "stat1_num": "3+",
+    "stat1_label": "年の経験",
+    "stat2_num": "12+",
+    "stat2_label": "プロジェクト",
+    "stat3_num": "5+",
+    "stat3_label": "クライアント"
+  },
+  "projects": {
+    "label": "02 — プロジェクト",
+    "view": "プロジェクトを見る",
+    "items": [
+      {
+        "id": "001",
+        "name": "Project Alpha",
+        "desc": "リアルタイムコラボレーションプラットフォーム — WebSocketベースのチームワークスペース",
+        "tags": ["React", "Node.js", "PostgreSQL", "WebSocket"]
+      },
+      {
+        "id": "002",
+        "name": "Data Flow",
+        "desc": "ダッシュボード分析プラットフォーム — データ可視化とレポーティング",
+        "tags": ["Python", "TypeScript", "Docker", "Redis"]
+      },
+      {
+        "id": "003",
+        "name": "Open Source CLI",
+        "desc": "開発者生産性ツール — ターミナルワークフローの自動化",
+        "tags": ["Node.js", "CLI", "Open Source"]
+      }
+    ]
+  },
+  "skills": {
+    "label": "03 — スキル",
+    "frontend": "フロントエンド",
+    "backend": "バックエンド",
+    "tools": "ツール",
+    "frontend_items": ["React", "Next.js", "TypeScript", "Tailwind CSS"],
+    "backend_items": ["Node.js", "Python", "PostgreSQL", "MongoDB"],
+    "tools_items": ["Git", "Docker", "AWS", "Figma"]
+  },
+  "contact": {
+    "label": "04 — 連絡先",
+    "heading_line1": "一緒に",
+    "heading_line2": "作って",
+    "heading_line3": "みましょう。",
+    "sub": "新しいプロジェクト、コラボレーションの提案、または単に挨拶まで — いつでも歓迎します。",
+    "email_label": "メール",
+    "github_label": "GitHub",
+    "linkedin_label": "LinkedIn"
+  },
+  "footer": {
+    "role": "フルスタック開発者",
+    "location": "ソウル、韓国"
+  },
+  "projectDetail": {
+    "back": "戻る",
+    "period": "プロジェクト期間",
+    "team": "チーム規模",
+    "role": "役割",
+    "overview": "プロジェクト概要",
+    "features": "主な機能",
+    "techStack": "技術スタック",
+    "liveDemo": "ライブデモ",
+    "sourceCode": "ソースコード"
+  }
+}
