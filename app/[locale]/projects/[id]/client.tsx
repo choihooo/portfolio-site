@@ -222,6 +222,8 @@ export default function ProjectsDetailClient({ project, mdxContent }: ProjectsDe
                     <div
                       key={tag}
                       className="tech-badge inline-flex items-center gap-2 px-4 py-2 bg-bg2 border border-border rounded-lg hover:border-accent/50 transition-colors cursor-default"
+                      role="status"
+                      aria-label={`Technology: ${tag}`}
                     >
                       <div className={`w-6 h-6 ${color} rounded-md flex items-center justify-center text-white text-xs font-bold`}>
                         {icon}
@@ -239,7 +241,7 @@ export default function ProjectsDetailClient({ project, mdxContent }: ProjectsDe
               {project.frontmatter.period && (
                 <div className="feature-card bg-bg2/50 rounded-xl p-6 border border-border hover:border-accent/30 transition-colors">
                   <div className="flex items-center gap-3 mb-3">
-                    <Calendar size={20} className="text-accent" />
+                    <Calendar size={20} className="text-accent" aria-hidden="true" />
                     <span className="font-mono text-sm text-text/60">
                       {t('period')}
                     </span>
@@ -251,7 +253,7 @@ export default function ProjectsDetailClient({ project, mdxContent }: ProjectsDe
               {project.frontmatter.teamSize && (
                 <div className="feature-card bg-bg2/50 rounded-xl p-6 border border-border hover:border-accent/30 transition-colors">
                   <div className="flex items-center gap-3 mb-3">
-                    <Users size={20} className="text-accent" />
+                    <Users size={20} className="text-accent" aria-hidden="true" />
                     <span className="font-mono text-sm text-text/60">
                       {t('team')}
                     </span>
@@ -263,7 +265,7 @@ export default function ProjectsDetailClient({ project, mdxContent }: ProjectsDe
               {project.frontmatter.role && (
                 <div className="feature-card bg-bg2/50 rounded-xl p-6 border border-border hover:border-accent/30 transition-colors">
                   <div className="flex items-center gap-3 mb-3">
-                    <Star size={20} className="text-accent" />
+                    <Star size={20} className="text-accent" aria-hidden="true" />
                     <span className="font-mono text-sm text-text/60">
                       {t('role')}
                     </span>

@@ -78,7 +78,9 @@ export default function CustomCursor() {
         style={{
           border: '1px solid #e8ff47',
           transform: 'translate(-50%, -50%)',
-          transition: 'transform 200ms ease-out',
+          transitionProperty: 'transform',
+          transitionDuration: '200ms',
+          transitionTimingFunction: 'ease-out',
         }}
         aria-hidden="true"
       />
