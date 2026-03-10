@@ -136,16 +136,18 @@ export default function ProjectsDetailClient({ project, mdxContent }: ProjectsDe
             },
             '-=0.2'
           )
-          .from(
-            '.gallery-item',
-            {
-              y: 30,
-              opacity: 0,
-              duration: 0.6,
-              stagger: 0.1,
-            },
-            '-=0.2'
-          )
+          {project.frontmatter.gallery && project.frontmatter.gallery.length > 0 && (
+            gsap.from(
+              '.gallery-item',
+              {
+                y: 30,
+                opacity: 0,
+                duration: 0.6,
+                stagger: 0.1,
+              },
+              '-=0.2'
+            )
+          )}
           .from(
             '.detail-section',
             {
