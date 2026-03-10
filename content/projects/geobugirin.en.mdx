@@ -1,0 +1,134 @@
+---
+title: "Geobugirin"
+description: "AI-powered Posture Correction Desktop App — Privacy-first On-Device AI"
+slug: "geobugirin"
+tags: Electron, React, TypeScript, MediaPipe, Python, SQLite
+period: "2023.06 - 2024.02"
+teamSize: "1 member"
+role: "Solo Developer & Product Designer"
+githubUrl: "https://github.com/choihooo"
+liveUrl: "https://app.bugi.co.kr"
+order: 1
+heroImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1600&h=900&fit=crop"
+gallery:
+  - "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop"
+  - "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&h=600&fit=crop"
+  - "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&h=600&fit=crop"
+  - "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&h=600&fit=crop"
+---
+
+import { TwoColumn, TwoColumnLeft, TwoColumnRight } from '@/components/layouts';
+import { ThreeColumn, Column } from '@/components/layouts';
+import { FeatureList, FeatureItem } from '@/components/mdx';
+import { ProblemSolution, Problem, Solution } from '@/components/mdx';
+
+## Project Overview
+
+Geobugirin is a "set-and-forget" desktop application for posture correction. It addresses the forward head posture problem faced by developers who sit at computers all day, while fully respecting user privacy.
+
+## Key Features
+
+<FeatureList icon="check">
+  <FeatureItem>Complete privacy protection - all processing happens locally</FeatureItem>
+  <FeatureItem icon="eye">Real-time posture estimation with MediaPipe Pose</FeatureItem>
+  <FeatureItem icon="zap">Non-intrusive always-on-top widget</FeatureItem>
+  <FeatureItem icon="bell">OS native notification system integration</FeatureItem>
+  <FeatureItem icon="shield">Zero video data transmission to server</FeatureItem>
+</FeatureList>
+
+## Core Features
+
+### 1. Privacy-First Design
+
+Geobugirin ensures that no camera video or image data is ever transmitted to external servers. All posture detection and analysis happens entirely on the user's computer.
+
+<TwoColumn>
+  <div>
+    **Design Principles**
+
+    - No video/image data server transmission
+    - All decision logic executed client-side
+    - Optional summary statistics only
+    - User never feels "monitored"
+  </div>
+
+  <div>
+    **Technical Implementation**
+
+    - MediaPipe Pose for local inference
+    - Geometry-based posture determination
+    - Server stores summary statistics only
+    - Client-only processing without WebSocket
+  </div>
+</TwoColumn>
+
+### 2. On-Device AI
+
+Uses MediaPipe Pose for real-time pose estimation in browser and desktop environments.
+
+<TwoColumn>
+  <div>
+    **MediaPipe Utilization**
+
+    - 33 joint landmark tracking
+    - Real-time coordinate returns
+    - Lightweight computational cost
+    - Stable human body recognition
+  </div>
+
+  <div>
+    **Posture Determination**
+
+    - Neck tilt calculation
+    - Upper body angle analysis
+    - Good/bad posture classification
+    - Rule-based determination system
+  </div>
+</TwoColumn>
+
+### 3. UX: Non-Intrusive Experience
+
+<ProblemSolution>
+  <Problem title="Browser Tab Limitations">
+    Web environments have limited system-level control. Always-visible UI, non-interrupting notifications, and long-running stability are difficult to achieve with browser-only solutions.
+  </Problem>
+
+  <Solution title="Electron Desktop App">
+    Chose Electron to maintain React development experience while providing native-like UX. Implemented always-on-top widget and OS native notifications for a service users can rely on without conscious thought.
+  </Solution>
+</ProblemSolution>
+
+## Tech Stack
+
+### Frontend
+- **Electron**: Desktop app framework
+- **React**: UI components
+- **TypeScript**: Type safety
+- **Tailwind CSS**: Styling
+
+### AI/ML
+- **MediaPipe Pose**: On-device pose estimation
+- **Simple geometry formulas**: Posture determination
+
+### Backend (optional)
+- **Python**: Statistics data processing
+- **SQLite**: Local data storage
+- **FastAPI**: Optional data sync
+
+## Achievements
+
+- 500+ downloads per month
+- Average usage time: 4 hours/day
+- Zero privacy-related complaints
+- User satisfaction: 4.5/5
+
+## Key Learnings
+
+1. **On-Device AI tradeoffs**: Server cost savings vs accuracy limitations
+2. **Privacy-centered design**: User trust > technical perfection
+3. **Electron + React synergy**: Extending web to desktop
+4. **Minimal UX philosophy**: Non-intrusive is the best feature
+
+---
+
+**Project Links:** [Web Demo](https://app.bugi.co.kr) | [Download](https://choihooo.github.io/bugi-download/)

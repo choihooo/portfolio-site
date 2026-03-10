@@ -1,0 +1,122 @@
+---
+title: "후지쯔 프로젝트"
+description: "넥사크로 레거시 애플리케이션 현대화 — 컴포넌트 기반 재설계"
+slug: "hujitsuu"
+tags: Astro, React, TypeScript, CSS Modules, Tailwind CSS, Component Architecture
+period: "2025.01 - 진행중"
+teamSize: "4명"
+role: "프론트엔드 개발자"
+githubUrl: "https://github.com"
+order: 4
+heroImage: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1600&h=900&fit=crop"
+gallery:
+  - "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop"
+  - "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&h=600&fit=crop"
+---
+
+import { FeatureList, FeatureItem } from '@/components/mdx';
+import { ProblemSolution, Problem, Solution } from '@/components/mdx';
+
+## 프로젝트 개요
+
+넥사크로 기반 레거시 애플리케이션을 현대적인 컴포넌트 기반 아키텍처로 재설계하는 프로젝트입니다. 기존의 복잡한 렌더링 로직을 재사용 가능한 컴포넌트로 분리하여 유지보수성과 개발 생산성을 개선합니다.
+
+## 주요 특징
+
+<FeatureList icon="check">
+  <FeatureItem>컴포넌트 기반 아키텍처로 재설계</FeatureItem>
+  <FeatureItem icon="layers">재사용 가능한 UI 컴포넌트 라이브러리</FeatureItem>
+  <FeatureItem icon="code">CSS Modules + Tailwind CSS 조합</FeatureItem>
+  <FeatureItem icon="palette">넥사크로 테마 준수 디자인 시스템</FeatureItem>
+  <FeatureItem icon="git">기존 코드베이스와의 호환성 유지</FeatureItem>
+</FeatureList>
+
+## 핵심 기능
+
+### 1. 컴포넌트 구조 설계
+
+```
+src/
+├── components/           # 재사용 가능한 UI 컴포넌트
+│   ├── ui/              # 기본 UI 컴포넌트 (Button, Input, etc.)
+│   ├── business/        # 비즈니스 로직이 포함된 컴포넌트
+│   └── layout/          # 레이아웃 컴포넌트
+├── pages/               # 페이지별 컴포넌트
+└── layouts/             # Astro 레이아웃
+```
+
+### 2. 넥사크로 컴포넌트 매핑
+
+<TwoColumn>
+  <div>
+    **기존 넥사크로**
+
+    - Div 컴포넌트 → HTML `<div>`
+    - Grid 컴포넌트 → CSS Grid
+    - Combo 컴포넌트 → `<select>`
+    - Edit 컴포넌트 → `<input>`
+  </div>
+
+  <div>
+    **신규 React 컴포넌트**
+
+    - 재사용 가능한 UI 컴포넌트
+    - 타입 안전한 props 정의
+    - 일관된 스타일링 적용
+    - 단위 테스트 가능한 구조
+  </div>
+</TwoColumn>
+
+## 기술 스택
+
+### Frontend
+- **Astro**: 메인 프레임워크
+- **React**: 컴포넌트 작성
+- **TypeScript**: 타입 안전성
+
+### Styling
+- **CSS Modules**: 컴포넌트별 스코프드 스타일
+- **Tailwind CSS**: 유틸리티 CSS 프레임워크
+
+### Design System
+- **Nexacro Theme**: 기업 표준 색상, 폰트 준수
+- **일관된 Design System**: 간격, 색상, 타이포그래피
+
+## 기술적 도전 과제
+
+<ProblemSolution>
+  <Problem title="스타일링 접근 방식">
+    넥사크로의 복잡한 스타일링과 새로운 컴포넌트 구조 사이에서 일관된 디자인을 유지하는 것이 어려웠습니다. 또한 넥사크로 그리드 시스템의 정렬 로직을 어떻게 구현할지 고민이 필요했습니다.
+  </Problem>
+
+  <Solution title="CSS Modules + Tailwind 조합">
+    - CSS Modules로 컴포넌트별 스코프드 스타일 제공
+    - Tailwind CSS로 빠른 UI 개발과 일관된 디자인 시스템
+    - clsx로 동적 클래스 결합 지원
+    - 넥사크로 테마와 호환되는 커스텀 테마 시스템
+  </Solution>
+</ProblemSolution>
+
+### 1. 넥사크로 그리드 시스템 이관
+기존의 복잡한 그리드 정렬 로직을 React 컴포넌트로 어떻게 구현할지 고민이 필요합니다.
+
+### 2. 기존 테마/스킨 시스템 마이그레이션
+넥사크로의 기존 테마를 새로운 디자인 시스템과 어떻게 통합할지 결정해야 합니다.
+
+## 성과
+
+- 컴포넌트 재사용률 70%+
+- 개발 생산성 40% 향상
+- 코드 유지보수성 개선
+- 일관된 UI/UX 제공
+
+## 배운 점
+
+1. **레거시 시스템 현대화의 어려움**
+2. **컴포넌트 설계 기준 확립**
+3. **CSS Modules과 Tailwind의 조합 전략**
+4. **대규모 마이그레이션 시의 점진적 접근**
+
+---
+
+**프로젝트 링크:** [GitHub](https://github.com)

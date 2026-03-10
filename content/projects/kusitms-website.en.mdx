@@ -1,0 +1,142 @@
+---
+title: "KUSITMS Website"
+description: "KUSITMS Website Modernization — Astro + React-based Modernization Project"
+slug: "kusitms-website"
+tags: Astro, React, TypeScript, Vite, Tailwind CSS, MDX
+period: "2025.02 - In Progress"
+teamSize: "4 members"
+role: "Frontend Developer"
+githubUrl: "https://github.com/kusitms"
+liveUrl: "https://www.kusitms.com"
+order: 2
+heroImage: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1600&h=900&fit=crop"
+gallery:
+  - "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&h=600&fit=crop"
+  - "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&h=600&fit=crop"
+  - "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&h=600&fit=crop"
+---
+
+import { TwoColumn, TwoColumnLeft, TwoColumnRight } from '@/components/layouts';
+import { FeatureList, FeatureItem } from '@/components/mdx';
+import { ProblemSolution, Problem, Solution } from '@/components/mdx';
+
+## Project Overview
+
+Modernization project for Korea University Software Technology Members Society (KUSITMS) official website using Astro and React. The project involves rebranding to the 33rd generation and includes code refactoring, design system construction, and GA integration.
+
+## Key Features
+
+<FeatureList icon="check">
+  <FeatureItem>Optimal page load performance with Astro Island architecture</FeatureItem>
+  <FeatureItem icon="palette">Complete UI/UX overhaul with 33rd generation branding</FeatureItem>
+  <FeatureItem icon="chart">Google Analytics integration for visitor behavior tracking</FeatureItem>
+  <FeatureItem icon="users">Onboarding and email collection for recruitment</FeatureItem>
+  <FeatureItem icon="book">Activity record hub with blog recap section</FeatureItem>
+</FeatureList>
+
+## Core Features
+
+### 1. Tech Stack Selection
+
+<TwoColumn>
+  <TwoColumnLeft>
+    ### Why Astro
+
+    - Optimized page load performance
+    - SSR support for faster initial loading
+    - Framework-agnostic (React, Vue, Svelte compatible)
+    - SEO-friendly structure
+  </TwoColumnLeft>
+
+  <TwoColumnRight>
+    ### Why React
+
+    - Largest community and library ecosystem
+    - Easier React developer recruitment
+    - Easy migration from Nexacro components
+    - Type safety with TypeScript
+  </TwoColumnRight>
+</TwoColumn>
+
+### 2. Performance Optimization
+
+<ProblemSolution>
+  <Problem title="Image Optimization Issue">
+    Exceeding Vercel's image optimization quota causes images to not display at all. The same issue occurred during the 31st Web TF.
+  </Problem>
+
+  <Solution title="Custom Image Optimization">
+    Implemented custom image optimization instead of using Next.js Image tags. Selected one consistent image optimization method and documented the problem and solution in the portfolio.
+  </Solution>
+</ProblemSolution>
+
+### 3. Sprint Plan
+
+<TwoColumn>
+  <div>
+    **Sprint 1 (Feb-Mar)**
+
+    - Code refactoring
+    - Preparation for Sprint 2
+  </div>
+
+  <div>
+    **Sprint 2 (Apr-May)**
+
+    - 33rd generation rebranding site launch
+    - Kusitms logo download
+  </div>
+</TwoColumn>
+
+## Tech Stack
+
+### Frontend
+- **Astro**: Main framework
+- **React**: Interactive components
+- **TypeScript**: Type safety
+- **Vite**: Build tool
+
+### Styling
+- **Tailwind CSS**: Utility CSS framework
+- **Atomic Design**: Component design system
+
+### Analytics
+- **Google Analytics**: Visitor behavior tracking
+
+### Deployment
+- **Vercel**: Hosting platform
+
+## Technical Challenges
+
+<ProblemSolution>
+  <Problem title="Island Architecture Design Complexity">
+    Applying Astro's Island architecture while properly separating static content and client-side interactive components is challenging.
+  </Problem>
+
+  <Solution title="Clear Separation Layer Structure">
+    - Static pages: SSR via Astro
+    - Interactive components: React client-side load
+    - Clearly separated project structure for maintainability
+  </Solution>
+</ProblemSolution>
+
+## Achievements & Progress
+
+- Code refactoring in progress
+- 33rd generation rebranding complete
+- Design system construction planned
+  - Priority display of recruitment/project/partner info
+  - Improved IA for core information structure
+- GA integration preparation
+
+## Next Steps
+
+- [ ] Complete design system construction
+- [ ] Full Google Analytics integration
+- [ ] Implement onboarding and contact network features
+- [ ] Activity record hub (Cupoters posts, retrospectives)
+- [ ] Improve recruitment system for 34th generation
+
+---
+
+**Project Links:** [Website](https://www.kusitms.com) | [GitHub](https://github.com/kusitms)

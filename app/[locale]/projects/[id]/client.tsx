@@ -2,7 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 import { useEffect, useRef } from 'react';
-import { ArrowLeft, ExternalLink, Github, Calendar, Users, Image as ImageIcon, Code2, Zap, Rocket, CheckCircle2, Star, TrendingUp } from 'lucide-react';
+import { ArrowLeft, ExternalLink, Github, Calendar, Users, Image as ImageIcon, Star } from 'lucide-react';
 import Link from 'next/link';
 import { useLocale } from 'next-intl';
 import Image from 'next/image';
@@ -271,63 +271,6 @@ export default function ProjectsDetailClient({ project, mdxContent }: ProjectsDe
               )}
             </div>
           )}
-
-          {/* Feature Highlights */}
-          <div className="detail-meta mb-16">
-            <h2 className="font-syne font-bold text-3xl mb-8 text-text flex items-center gap-3 text-wrap-balance">
-              <Zap className="text-accent" aria-hidden="true" />
-              Key Features
-            </h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div className="feature-card group bg-gradient-to-br from-bg2 to-bg border border-border rounded-xl p-6 hover:border-accent/50 transition-all duration-300">
-                <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                  <Code2 className="text-accent" size={24} />
-                </div>
-                <h3 className="font-syne font-bold text-lg mb-2 text-text">Real-time Sync</h3>
-                <p className="text-text/60 text-sm">WebSocket 기반 초저지연성 실시간 동기화</p>
-              </div>
-
-              <div className="feature-card group bg-gradient-to-br from-bg2 to-bg border border-border rounded-xl p-6 hover:border-accent/50 transition-all duration-300">
-                <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                  <CheckCircle2 className="text-accent" size={24} />
-                </div>
-                <h3 className="font-syne font-bold text-lg mb-2 text-text">Conflict Free</h3>
-                <p className="text-text/60 text-sm">CRDT 알고리즘으로 충돌 없는 병합</p>
-              </div>
-
-              <div className="feature-card group bg-gradient-to-br from-bg2 to-bg border border-border rounded-xl p-6 hover:border-accent/50 transition-all duration-300">
-                <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                  <TrendingUp className="text-accent" size={24} />
-                </div>
-                <h3 className="font-syne font-bold text-lg mb-2 text-text">High Performance</h3>
-                <p className="text-text/60 text-sm">최적화된 캐싱으로 빠른 응답 속도</p>
-              </div>
-
-              <div className="feature-card group bg-gradient-to-br from-bg2 to-bg border border-border rounded-xl p-6 hover:border-accent/50 transition-all duration-300">
-                <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                  <Rocket className="text-accent" size={24} />
-                </div>
-                <h3 className="font-syne font-bold text-lg mb-2 text-text">Scalable</h3>
-                <p className="text-text/60 text-sm">수평 확장 가능한 아키텍처</p>
-              </div>
-
-              <div className="feature-card group bg-gradient-to-br from-bg2 to-bg border border-border rounded-xl p-6 hover:border-accent/50 transition-all duration-300">
-                <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                  <ImageIcon className="text-accent" size={24} />
-                </div>
-                <h3 className="font-syne font-bold text-lg mb-2 text-text">Screen Share</h3>
-                <p className="text-text/60 text-sm">WebRTC 기반 P2P 화면 공유</p>
-              </div>
-
-              <div className="feature-card group bg-gradient-to-br from-bg2 to-bg border border-border rounded-xl p-6 hover:border-accent/50 transition-all duration-300">
-                <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                  <Users className="text-accent" size={24} />
-                </div>
-                <h3 className="font-syne font-bold text-lg mb-2 text-text">Team Collaboration</h3>
-                <p className="text-text/60 text-sm">세분화된 권한 관리와 채팅</p>
-              </div>
-            </div>
-          </div>
 
           {/* Gallery */}
           {project.frontmatter.gallery && project.frontmatter.gallery.length > 0 && (

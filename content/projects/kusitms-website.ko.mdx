@@ -1,0 +1,142 @@
+---
+title: "큐시즘 메이커스"
+description: "KUSITMS 웹사이트 개편 — Astro + React 기반 현대화 프로젝트"
+slug: "kusitms-website"
+tags: Astro, React, TypeScript, Vite, Tailwind CSS, MDX
+period: "2025.02 - 진행중"
+teamSize: "4명"
+role: "프론트엔드 개발자"
+githubUrl: "https://github.com/kusitms"
+liveUrl: "https://www.kusitms.com"
+order: 2
+heroImage: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1600&h=900&fit=crop"
+gallery:
+  - "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&h=600&fit=crop"
+  - "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&h=600&fit=crop"
+  - "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&h=600&fit=crop"
+---
+
+import { TwoColumn, TwoColumnLeft, TwoColumnRight } from '@/components/layouts';
+import { FeatureList, FeatureItem } from '@/components/mdx';
+import { ProblemSolution, Problem, Solution } from '@/components/mdx';
+
+## 프로젝트 개요
+
+고려대학교 소프트웨어 동아리 KUSITMS의 공식 웹사이트를 Astro와 React를 사용하여 현대화하고 리브랜딩하는 프로젝트입니다. 3단계 스프린트로 진행되며, 코드 리팩토링, 디자인 시스템 구축, GA 연동 등을 포함합니다.
+
+## 주요 특징
+
+<FeatureList icon="check">
+  <FeatureItem>Astro 아일랜드 아키텍처로 최적의 페이지 로드 성능</FeatureItem>
+  <FeatureItem icon="palette">33기 브랜딩으로 완전한 UI/UX 개편</FeatureItem>
+  <FeatureItem icon="chart">Google Analytics 연동으로 방문자 행동 데이터 수집</FeatureItem>
+  <FeatureItem icon="users">리크루팅을 위한 온보딩 및 이메일 수집 기능</FeatureItem>
+  <FeatureItem icon="book">활동 기록 허브화를 위한 블로그 후기 탭</FeatureItem>
+</FeatureList>
+
+## 핵심 기능
+
+### 1. 기술 스택 선정
+
+<TwoColumn>
+  <TwoColumnLeft>
+    ### Astro를 선택한 이유
+
+    - 페이지 로드 성능 최적화
+    - SSR 지원으로 초기 로딩 속도 개선
+    - 프레임워크 무관 (React, Vue, Svelte 혼용 가능)
+    - SEO 친화적 구조
+  </TwoColumnLeft>
+
+  <TwoColumnRight>
+    ### React를 선택한 이유
+
+    - 가장 큰 커뮤니티와 라이브러리 생태계
+    - React 개발자 채용 용이
+    - 넥사크로 컴포넌트 마이그레이션 용이
+    - TypeScript로 타입 안전성 확보
+  </TwoColumnRight>
+</TwoColumn>
+
+### 2. 성능 최적화
+
+<ProblemSolution>
+  <Problem title="이미지 최적화 문제">
+    Vercel에서 제공하는 이미지 최적화 할당량을 초과하면 이미지가 화면에 전혀 노출되지 않는 문제가 발생했습니다. 31기 웹 TF 진행할 때도 동일한 문제가 있었습니다.
+  </Problem>
+
+  <Solution title="직접 이미지 최적화 구현">
+    Next.js의 Image 태그를 사용하지 않고 직접 이미지 최적화 기능을 구현했습니다. 다양한 이미지 최적화 방법 중 하나를 선택하여 일관되게 적용하고, a 문제가 발생한 원인과 해결 방법을 포트폴리오에 작성했습니다.
+  </Solution>
+</ProblemSolution>
+
+### 3. 스프린트 계획
+
+<TwoColumn>
+  <div>
+    **1차 스프린트 (2월~3월)**
+
+    - 코드 리팩토링
+    - 2차 스프린트를 위한 준비
+  </div>
+
+  <div>
+    **2차 스프린트 (4월~5월)**
+
+    - 33기 브랜딩 변경 사이트 공개
+    - 큐시즘 로고 다운로드
+  </div>
+</TwoColumn>
+
+## 기술 스택
+
+### Frontend
+- **Astro**: 메인 프레임워크
+- **React**: 인터랙티브 컴포넌트
+- **TypeScript**: 타입 안전성
+- **Vite**: 빌드 도구
+
+### Styling
+- **Tailwind CSS**: 유틸리티 CSS 프레임워크
+- **Atomic Design**: 컴포넌트 설계 시스템
+
+### Analytics
+- **Google Analytics**: 방문자 행동 추적
+
+### Deployment
+- **Vercel**: 호스팅 플랫폼
+
+## 기술적 도전 과제
+
+<ProblemSolution>
+  <Problem title="아일랜드 아키텍처 설계 복잡성">
+    Astro의 아일랜드 아키텍처를 적용하면서 정적 콘텐츠와 클라이언트 인터랙티브 컴포넌트를 적절히 분리하는 것이 어려웠습니다.
+  </Problem>
+
+  <Solution title="명확한 분리 계층 구조">
+    - 정적 페이지는 Astro에서 SSR 처리
+    - 인터랙티브 컴포넌트는 React로 클라이언트 로드
+    - 프로젝트 구조를 명확하게 분리하여 유지보수성 확보
+  </Solution>
+</ProblemSolution>
+
+## 성과 및 진행 상황
+
+- 코드 리팩토링 진행중
+- 33기 브랜딩 변경 완료
+- 디자인 시스템 구축 예정
+  - 리쿠팅/프로젝트/파트너사 정보 우선 노출
+  - IA 개선을 통한 핵심 정보 구조화
+- GA 연동 준비중
+
+## 다음 단계
+
+- [ ] 디자인 시스템 완전 구축
+- [ ] Google Analytics 완전 연동
+- [ ] 온보딩 및 연락망 확보 기능 구현
+- [ ] 활동 기록 허브화 (큐포터즈 후기, 회고록)
+- [ ] 34기 모집을 위한 리크루팅 시스템 개선
+
+---
+
+**프로젝트 링크:** [웹사이트](https://www.kusitms.com) | [GitHub](https://github.com/kusitms)

@@ -1,0 +1,134 @@
+---
+title: "거북이린"
+description: "AI 기반 자세 교정 데스크톱 앱 — 프라이버시를 존중하는 On-Device AI"
+slug: "geobugirin"
+tags: Electron, React, TypeScript, MediaPipe, Python, SQLite
+period: "2023.06 - 2024.02"
+teamSize: "1명"
+role: "솔로 개발자 & 기획자"
+githubUrl: "https://github.com/choihooo"
+liveUrl: "https://app.bugi.co.kr"
+order: 1
+heroImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1600&h=900&fit=crop"
+gallery:
+  - "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop"
+  - "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&h=600&fit=crop"
+  - "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&h=600&fit=crop"
+  - "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&h=600&fit=crop"
+---
+
+import { TwoColumn, TwoColumnLeft, TwoColumnRight } from '@/components/layouts';
+import { ThreeColumn, Column } from '@/components/layouts';
+import { FeatureList, FeatureItem } from '@/components/mdx';
+import { ProblemSolution, Problem, Solution } from '@/components/mdx';
+
+## 프로젝트 개요
+
+거북이린은 "신경 쓰지 않아도 되는" 자세 교정 데스크톱 애플리케이션입니다. 하루 종일 컴퓨터 앞에 앉아 있는 개발자들이 겪는 거북목 문제를, 사용자의 프라이버시를 완전히 존중하며 해결합니다.
+
+## 주요 특징
+
+<FeatureList icon="check">
+  <FeatureItem>모든 처리가 로컬에서 수행되는 완전한 프라이버시 보호</FeatureItem>
+  <FeatureItem icon="eye">MediaPipe Pose 기반 실시간 자세 추정</FeatureItem>
+  <FeatureItem icon="zap">방해하지 않는 항상 위 위젯 UI</FeatureItem>
+  <FeatureItem icon="bell">OS 네이티브 알림 시스템 연동</FeatureItem>
+  <FeatureItem icon="shield">서버로 영상 데이터 전송 없음</FeatureItem>
+</FeatureList>
+
+## 핵심 기능
+
+### 1. 프라이버시 우선 설계
+
+거북이린은 사용자의 카메라 영상이나 이미지가 외부 서버로 전송되지 않도록 설계되었습니다. 모든 자세 판정과 분석이 사용자의 컴퓨터 내부에서 완료됩니다.
+
+<TwoColumn>
+  <div>
+    **설계 원칙**
+
+    - 영상/이미지 데이터 서버 전송 금지
+    - 모든 판정 로직 클라이언트 수행
+    - 결과 집계 데이터만 선택적 전송
+    - 사용자가 "감시당하지 않는" 구조
+  </div>
+
+  <div>
+    **기술적 구현**
+
+    - MediaPipe Pose로 로컬 추론
+    - 기하학 수식 기반 자세 판정
+    - 서버는 통계용 요약 데이터만 저장
+    - WebSocket 없는 클라이언트 전용 처리
+  </div>
+</TwoColumn>
+
+### 2. On-Device AI
+
+MediaPipe Pose를 사용하여 브라우저와 데스크톱 환경에서 실시간으로 포즈 추정을 수행합니다.
+
+<TwoColumn>
+  <div>
+    **MediaPipe 활용**
+
+    - 33개 관절 랜드마크 추적
+    - 실시간 좌표 반환
+    - 가벼운 연산 비용
+    - 안정적인 인체 인식
+  </div>
+
+  <div>
+    **자세 판정 로직**
+
+    - 목 기울기 계산
+    - 상체 각도 분석
+    - 좋은/나쁜 자세 분류
+    - 규칙 기반 판정 시스템
+  </div>
+</TwoColumn>
+
+### 3. UX: 사용자의 집중을 끊지 않음
+
+<ProblemSolution>
+  <Problem title="브라우저 탭에 갇힌 웹 앱의 한계">
+    웹 환경에서는 시스템 레벨 제어가 제한적입니다. 항상 화면 위에 표시되는 UI, 작업 흐름을 방해하지 않는 알림, 장시간 실행을 전제로 한 안정성 같은 요소들은 브라우저만으로는 구현에 한계가 있었습니다.
+  </Problem>
+
+  <Solution title="Electron으로 데스크톱 앱 전환">
+    React 개발 경험을 유지하면서 네이티브에 가까운 UX를 제공하기 위해 Electron을 선택했습니다. 항상 위 위젯과 OS 네이티브 알림을 통해 사용자가 의식하지 않아도 되는 서비스를 구현했습니다.
+  </Solution>
+</ProblemSolution>
+
+## 기술 스택
+
+### Frontend
+- **Electron**: 데스크톱 앱 프레임워크
+- **React**: UI 컴포넌트
+- **TypeScript**: 타입 안전성
+- **Tailwind CSS**: 스타일링
+
+### AI/ML
+- **MediaPipe Pose**: 온디바이스 포즈 추정
+- **간단한 기하학 수식**: 자세 판정
+
+### Backend (optional)
+- **Python**: 통계 데이터 처리
+- **SQLite**: 로컬 데이터 저장
+- **FastAPI**: 선택적 데이터 동기화
+
+## 성과
+
+- 월 500+ 다운로드
+- 평균 사용 시간 4시간/일
+- 0건의 프라이버시 관련 문의
+- 사용자 만족도 4.5/5
+
+## 배운 점
+
+1. **On-Device AI의 장단점**: 서버 비용 절감 vs 정확도 제한
+2. **프라이버시 중심 설계**: 사용자 신뢰가 기술적 완벽함보다 중요
+3. **Electron과 React의 조화**: 웹 기술을 데스크톱으로 확장
+4. **UX 최소화의 미학**: 방해하지 않는 것이 최고의 기능
+
+---
+
+**프로젝트 링크:** [웹 데모](https://app.bugi.co.kr) | [다운로드](https://choihooo.github.io/bugi-download/)

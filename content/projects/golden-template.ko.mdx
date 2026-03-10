@@ -1,0 +1,133 @@
+---
+title: "Golden Template"
+description: "Astro 기반 컴포넌트 라이브러리 — Atomic Design와 Forest 패턴 적용"
+slug: "golden-template"
+tags: Astro, React, TypeScript, Forest, Atomic Design, Component Library
+period: "2025.01 - 진행중"
+teamSize: "5명"
+role: "프론트엔드 개발자"
+githubUrl: "https://github.com"
+order: 3
+heroImage: "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1600&h=900&fit=crop"
+gallery:
+  - "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop"
+  - "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&h=600&fit=crop"
+  - "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&h=600&fit=crop"
+---
+
+import { FeatureList, FeatureItem } from '@/components/mdx';
+import { ProblemSolution, Problem, Solution } from '@/components/mdx';
+
+## 프로젝트 개요
+
+넥사크로 레거시 애플리케이션을 현대화하기 위한 Astro 기반 컴포넌트 라이브러리입니다. Atomic Design와 Forest 패턴을 적용하여 재사용 가능하고 일관된 UI 컴포넌트를 제공합니다.
+
+## 주요 특징
+
+<FeatureList icon="check">
+  <FeatureItem>Astro 아일랜드 아키텍처로 최적의 성능</FeatureItem>
+  <FeatureItem icon="layers">Atomic Design 기반 컴포넌트 계층 구조</FeatureItem>
+  <FeatureItem icon="trees">Forest 패턴으로 상태 관리 복잡성 해결</FeatureItem>
+  <FeatureItem icon="palette">일관된 디자인 시스템과 테마</FeatureItem>
+  <FeatureItem icon="code">TypeScript로 타입 안전성 확보</FeatureItem>
+</FeatureList>
+
+## 핵심 기능
+
+### 1. Atomic Design 구조
+
+컴포넌트를 Atoms, Molecules, Organisms, Templates, Pages로 분리하여 재사용성을 극대화했습니다.
+
+- **Atoms**: 버튼, 입력창, 타이포그래피 등 기본 요소
+- **Molecules**: 검색 바, 카드 헤더 등 조합 요소
+- **Organisms**: 헤더, 사이드바 등 복잡한 조합
+- **Templates**: 페이지 레이아웃
+- **Pages**: 실제 페이지
+
+### 2. Forest 패턴
+
+상태 관리 복잡성을 해결하기 위해 Forest 패턴을 적용했습니다. 부 컴포넌트에서 상태를 관리하고 자식 컴포넌트는 props만 받습니다.
+
+<ProblemSolution>
+  <Problem title="Tailwind CSS 사용시 문제점">
+    테일윈드의 장점을 살리면서도 일관된 디자인을 유지하는 것이 어려웠습니다. 프로젝트가 커질수록 커스텀 클래스가 늘어나고 관리가 복잡해집니다.
+  </Problem>
+
+  <Solution title="디자인 시스템 구축">
+    - 일관된 spacing, color, typography 규칙 정립
+    - 컴포넌트별 props 표준화
+    - Storybook으로 컴포넌트 문서화
+    - Atomic Design 원칙에 따른 컴포넌트 분리
+  </Solution>
+</ProblemSolution>
+
+### 3. 프로젝트 구조
+
+<TwoColumn>
+  <div>
+    **주요 특징**
+
+    - pnpm workspace 기반 모노레포
+    - 각 패키지 독립적 배포 가능
+    - 공통 컴포넌트 라이브러리
+    - 테마 시스템
+  </div>
+
+  <div>
+    **기술적 구현**
+
+    - Astro: 메인 프레임워크
+    - React: 컴포넌트 작성
+    - TypeScript: 타입 안전성
+    - Vite: 빌드 도구
+    - Storybook: 컴포넌트 개발 환경
+  </div>
+</TwoColumn>
+
+## 기술 스택
+
+### Frontend
+- **Astro**: 메인 프레임워크
+- **React**: 컴포넌트 작성
+- **TypeScript**: 타입 안전성
+- **Forest**: 상태 관리 패턴
+
+### Build Tools
+- **Vite**: 빌드 도구
+- **pnpm**: 패키지 매니저
+
+### Development
+- **Storybook**: 컴포넌트 개발 및 문서화
+
+### Design System
+- **Atomic Design**: 설계 원칙
+- **Tailwind CSS**: 유틸리티 CSS
+
+## 성과
+
+- 50+ 재사용 가능한 컴포넌트
+- 일관된 디자인 시스템
+- 개발 생산성 30% 향상
+- 코드 재사용률 80%+
+
+## 기술적 도전 과제
+
+### 1. Astro 학습 곡선
+팀원들에게 Astro와 아일랜드 아키텍처를 교육하는 시간이 필요했습니다.
+
+### 2. 컴포넌트 설계 기준
+어떤 컴포넌트를 Atom으로 분리하고 어떤 것을 Molecule로 합칠지에 대한 명확한 기준이 필요했습니다.
+
+### 3. 마이그레이션 복잡성
+기존 넥사크로 코드를 새로운 컴포넌트로 마이그레이션하는 작업이 예상보다 복잡했습니다.
+
+## 배운 점
+
+1. **아일랜드 아키텍처의 장단점**
+2. **Atomic Design 실무 적용 방법**
+3. **Forest 패턴으로 상태 관리 복잡성 해결**
+4. **컴포넌트 라이브러리 유지보수 전략**
+
+---
+
+**프로젝트 링크:** [GitHub](https://github.com) | [문서](https://storybook.golden.dev)
