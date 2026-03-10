@@ -2,11 +2,15 @@
 
 import {useTranslations, useLocale} from 'next-intl';
 import {useEffect, useRef} from 'react';
-import gsap from 'gsap';
-import ScrollTrigger from 'gsap/ScrollTrigger';
 import {Mail, Github, Linkedin} from 'lucide-react';
 
-gsap.registerPlugin(ScrollTrigger);
+// Dynamically import GSAP to reduce initial bundle size
+const loadGSAP = async () => {
+  const gsap = (await import('gsap')).default;
+  const ScrollTrigger = (await import('gsap/ScrollTrigger')).default;
+  gsap.registerPlugin(ScrollTrigger);
+  return { gsap, ScrollTrigger };
+};
 
 export default function Contact() {
   const t = useTranslations('contact');
@@ -18,55 +22,58 @@ export default function Contact() {
     const prefersReducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) return;
 
-    const ctx = gsap.context(() => {
-      gsap.from('.contact-label', {
-        scrollTrigger: {
-          trigger: '.contact-label',
-          start: 'top 80%',
-        },
-        y: 40,
-        opacity: 0,
-        duration: 0.85,
-        ease: 'power3.out',
-      });
+    // Dynamically load GSAP and run animations
+    loadGSAP().then(({ gsap, ScrollTrigger }) => {
+      const ctx = gsap.context(() => {
+        gsap.from('.contact-label', {
+          scrollTrigger: {
+            trigger: '.contact-label',
+            start: 'top 80%',
+          },
+          y: 40,
+          opacity: 0,
+          duration: 0.85,
+          ease: 'power3.out',
+        });
 
-      gsap.from('.contact-heading .line', {
-        scrollTrigger: {
-          trigger: '.contact-heading',
-          start: 'top 80%',
-        },
-        y: 60,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.1,
-        ease: 'power3.out',
-      });
+        gsap.from('.contact-heading .line', {
+          scrollTrigger: {
+            trigger: '.contact-heading',
+            start: 'top 80%',
+          },
+          y: 60,
+          opacity: 0,
+          duration: 0.8,
+          stagger: 0.1,
+          ease: 'power3.out',
+        });
 
-      gsap.from('.contact-sub', {
-        scrollTrigger: {
-          trigger: '.contact-sub',
-          start: 'top 80%',
-        },
-        y: 40,
-        opacity: 0,
-        duration: 0.85,
-        ease: 'power3.out',
-      });
+        gsap.from('.contact-sub', {
+          scrollTrigger: {
+            trigger: '.contact-sub',
+            start: 'top 80%',
+          },
+          y: 40,
+          opacity: 0,
+          duration: 0.85,
+          ease: 'power3.out',
+        });
 
-      gsap.from('.contact-link', {
-        scrollTrigger: {
-          trigger: '.contact-link',
-          start: 'top 80%',
-        },
-        y: 40,
-        opacity: 0,
-        duration: 0.7,
-        stagger: 0.1,
-        ease: 'power3.out',
-      });
-    }, sectionRef);
+        gsap.from('.contact-link', {
+          scrollTrigger: {
+            trigger: '.contact-link',
+            start: 'top 80%',
+          },
+          y: 40,
+          opacity: 0,
+          duration: 0.7,
+          stagger: 0.1,
+          ease: 'power3.out',
+        });
+      }, sectionRef);
 
-    return () => ctx.revert();
+      return () => ctx.revert();
+    });
   }, []);
 
   return (

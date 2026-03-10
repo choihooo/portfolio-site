@@ -2,7 +2,12 @@
 
 import {useTranslations} from 'next-intl';
 import {useEffect, useRef} from 'react';
-import gsap from 'gsap';
+
+// Dynamically import GSAP to reduce initial bundle size
+const loadGSAP = async () => {
+  const gsap = (await import('gsap')).default;
+  return { gsap };
+};
 
 export default function Footer() {
   const t = useTranslations('footer');
@@ -13,16 +18,19 @@ export default function Footer() {
     const prefersReducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) return;
 
-    const ctx = gsap.context(() => {
-      gsap.from('.footer-content', {
-        y: 40,
-        opacity: 0,
-        duration: 0.85,
-        ease: 'power3.out',
-      });
-    }, footerRef);
+    // Dynamically load GSAP and run animations
+    loadGSAP().then(({ gsap }) => {
+      const ctx = gsap.context(() => {
+        gsap.from('.footer-content', {
+          y: 40,
+          opacity: 0,
+          duration: 0.85,
+          ease: 'power3.out',
+        });
+      }, footerRef);
 
-    return () => ctx.revert();
+      return () => ctx.revert();
+    });
   }, []);
 
   return (

@@ -5,7 +5,12 @@ import {useRouter, usePathname} from 'next/navigation';
 import Link from 'next/link';
 import {useState, useEffect, useRef} from 'react';
 import {Menu, X} from 'lucide-react';
-import gsap from 'gsap';
+
+// Dynamically import GSAP to reduce initial bundle size
+const loadGSAP = async () => {
+  const gsap = (await import('gsap')).default;
+  return { gsap };
+};
 
 export default function Navbar() {
   const t = useTranslations('nav');
@@ -28,17 +33,20 @@ export default function Navbar() {
   };
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.from('.nav-link', {
-        y: -20,
-        opacity: 0,
-        duration: 0.6,
-        stagger: 0.1,
-        ease: 'power3.out',
-      });
-    }, navRef);
+    // Dynamically load GSAP and run animations
+    loadGSAP().then(({ gsap }) => {
+      const ctx = gsap.context(() => {
+        gsap.from('.nav-link', {
+          y: -20,
+          opacity: 0,
+          duration: 0.6,
+          stagger: 0.1,
+          ease: 'power3.out',
+        });
+      }, navRef);
 
-    return () => ctx.revert();
+      return () => ctx.revert();
+    });
   }, []);
 
   const navItems = [

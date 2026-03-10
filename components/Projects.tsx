@@ -3,11 +3,16 @@
 import { useTranslations, useLocale } from 'next-intl';
 import { ExternalLink } from 'lucide-react';
 import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
-import gsap from 'gsap';
-import ScrollTrigger from 'gsap/ScrollTrigger';
+import { useEffect, useRef, useState, useTransition } from 'react';
+import dynamic from 'next/dynamic';
 
-gsap.registerPlugin(ScrollTrigger);
+// Dynamically import GSAP to reduce initial bundle size
+const loadGSAP = async () => {
+  const gsap = (await import('gsap')).default;
+  const ScrollTrigger = (await import('gsap/ScrollTrigger')).default;
+  gsap.registerPlugin(ScrollTrigger);
+  return { gsap, ScrollTrigger };
+};
 
 interface MDXProject {
   slug: string;
@@ -25,6 +30,7 @@ export default function Projects() {
   const locale = useLocale();
   const sectionRef = useRef<HTMLElement>(null);
   const [projects, setProjects] = useState<MDXProject[]>([]);
+  const [isPending, startTransition] = useTransition();
 
   useEffect(() => {
     // Load projects based on current locale
@@ -35,14 +41,11 @@ export default function Projects() {
         if (!response.ok) throw new Error('Failed to load projects');
 
         const allProjects = await response.json();
-        console.log('Current locale:', locale);
-        console.log('All projects:', allProjects);
 
         // Filter projects for current locale
         const localeProjects = allProjects
           .map((p: any) => {
             const extractedLocale = p.slug.split('.').pop() || 'en';
-            console.log(`Slug: ${p.slug}, Extracted locale: ${extractedLocale}`);
             return {
               ...p,
               locale: extractedLocale
@@ -50,8 +53,10 @@ export default function Projects() {
           })
           .filter((p: MDXProject) => p.locale === locale);
 
-        console.log('Locale projects:', localeProjects);
-        setProjects(localeProjects);
+        // Use transition for non-urgent state updates
+        startTransition(() => {
+          setProjects(localeProjects);
+        });
       } catch (error) {
         console.error('Error loading projects:', error);
       }
@@ -67,36 +72,39 @@ export default function Projects() {
     const prefersReducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) return;
 
-    const ctx = gsap.context(() => {
-      gsap.from('.projects-label', {
-        scrollTrigger: {
-          trigger: '.projects-label',
-          start: 'top 80%',
-        },
-        y: 40,
-        opacity: 0,
-        duration: 0.85,
-        ease: 'power3.out',
-      });
-
-      const cards = gsap.utils.toArray<HTMLElement>('.project-card');
-      cards.forEach((card) => {
-        gsap.from(card, {
+    // Dynamically load GSAP and run animations
+    loadGSAP().then(({ gsap, ScrollTrigger }) => {
+      const ctx = gsap.context(() => {
+        gsap.from('.projects-label', {
           scrollTrigger: {
-            trigger: card,
-            start: 'top 85%',
-            end: 'bottom 20%',
-            toggleActions: 'play none none reverse',
+            trigger: '.projects-label',
+            start: 'top 80%',
           },
-          y: 60,
+          y: 40,
           opacity: 0,
           duration: 0.85,
           ease: 'power3.out',
         });
-      });
-    }, sectionRef);
 
-    return () => ctx.revert();
+        const cards = gsap.utils.toArray<HTMLElement>('.project-card');
+        cards.forEach((card) => {
+          gsap.from(card, {
+            scrollTrigger: {
+              trigger: card,
+              start: 'top 85%',
+              end: 'bottom 20%',
+              toggleActions: 'play none none reverse',
+            },
+            y: 60,
+            opacity: 0,
+            duration: 0.85,
+            ease: 'power3.out',
+          });
+        });
+      }, sectionRef);
+
+      return () => ctx.revert();
+    });
   }, [projects]);
 
   if (projects.length === 0) {

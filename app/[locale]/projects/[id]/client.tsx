@@ -2,12 +2,17 @@
 
 import { useTranslations } from 'next-intl';
 import { useEffect, useRef } from 'react';
-import gsap from 'gsap';
 import { ArrowLeft, ExternalLink, Github, Calendar, Users, Image as ImageIcon, Code2, Zap, Rocket, CheckCircle2, Star, TrendingUp } from 'lucide-react';
 import Link from 'next/link';
 import { useLocale } from 'next-intl';
 import Image from 'next/image';
 import Footer from '@/components/Footer';
+
+// Dynamically import GSAP to reduce initial bundle size
+const loadGSAP = async () => {
+  const gsap = (await import('gsap')).default;
+  return { gsap };
+};
 
 interface ProjectFrontmatter {
   title: string;
@@ -74,84 +79,87 @@ export default function ProjectsDetailClient({ project, mdxContent }: ProjectsDe
   useEffect(() => {
     if (prefersReducedMotion) return; // Skip animations for reduced motion preference
 
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    // Dynamically load GSAP and run animations
+    loadGSAP().then(({ gsap }) => {
+      const ctx = gsap.context(() => {
+        const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
-      tl.from('.detail-back', {
-        x: -20,
-        opacity: 0,
-        duration: 0.6,
-      })
-        .from(
-          '.detail-hero-image',
-          {
-            scale: 1.05,
-            opacity: 0,
-            duration: 1,
-          },
-          '-=0.2'
-        )
-        .from(
-          '.detail-header',
-          {
-            y: 60,
-            opacity: 0,
-            duration: 0.8,
-          },
-          '-=0.5'
-        )
-        .from(
-          '.detail-meta',
-          {
-            y: 40,
-            opacity: 0,
-            duration: 0.6,
-          },
-          '-=0.4'
-        )
-        .from(
-          '.tech-badge',
-          {
-            y: 20,
-            opacity: 0,
-            duration: 0.4,
-            stagger: 0.05,
-          },
-          '-=0.2'
-        )
-        .from(
-          '.feature-card',
-          {
-            y: 30,
-            opacity: 0,
-            duration: 0.6,
-            stagger: 0.1,
-          },
-          '-=0.2'
-        )
-        .from(
-          '.gallery-item',
-          {
-            y: 30,
-            opacity: 0,
-            duration: 0.6,
-            stagger: 0.1,
-          },
-          '-=0.2'
-        )
-        .from(
-          '.detail-section',
-          {
-            y: 30,
-            opacity: 0,
-            duration: 0.6,
-            stagger: 0.1,
-          },
-          '-=0.3'
-        );
-    }, sectionRef);
+        tl.from('.detail-back', {
+          x: -20,
+          opacity: 0,
+          duration: 0.6,
+        })
+          .from(
+            '.detail-hero-image',
+            {
+              scale: 1.05,
+              opacity: 0,
+              duration: 1,
+            },
+            '-=0.2'
+          )
+          .from(
+            '.detail-header',
+            {
+              y: 60,
+              opacity: 0,
+              duration: 0.8,
+            },
+            '-=0.5'
+          )
+          .from(
+            '.detail-meta',
+            {
+              y: 40,
+              opacity: 0,
+              duration: 0.6,
+            },
+            '-=0.4'
+          )
+          .from(
+            '.tech-badge',
+            {
+              y: 20,
+              opacity: 0,
+              duration: 0.4,
+              stagger: 0.05,
+            },
+            '-=0.2'
+          )
+          .from(
+            '.feature-card',
+            {
+              y: 30,
+              opacity: 0,
+              duration: 0.6,
+              stagger: 0.1,
+            },
+            '-=0.2'
+          )
+          .from(
+            '.gallery-item',
+            {
+              y: 30,
+              opacity: 0,
+              duration: 0.6,
+              stagger: 0.1,
+            },
+            '-=0.2'
+          )
+          .from(
+            '.detail-section',
+            {
+              y: 30,
+              opacity: 0,
+              duration: 0.6,
+              stagger: 0.1,
+            },
+            '-=0.3'
+          );
+      }, sectionRef);
 
-    return () => ctx.revert();
+      return () => ctx.revert();
+    });
   }, []);
 
   return (

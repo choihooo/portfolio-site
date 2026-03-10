@@ -2,10 +2,14 @@
 
 import {useTranslations} from 'next-intl';
 import {useEffect, useRef} from 'react';
-import gsap from 'gsap';
-import ScrollTrigger from 'gsap/ScrollTrigger';
 
-gsap.registerPlugin(ScrollTrigger);
+// Dynamically import GSAP to reduce initial bundle size
+const loadGSAP = async () => {
+  const gsap = (await import('gsap')).default;
+  const ScrollTrigger = (await import('gsap/ScrollTrigger')).default;
+  gsap.registerPlugin(ScrollTrigger);
+  return { gsap, ScrollTrigger };
+};
 
 export default function Skills() {
   const t = useTranslations('skills');
@@ -16,32 +20,35 @@ export default function Skills() {
     const prefersReducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) return;
 
-    const ctx = gsap.context(() => {
-      gsap.from('.skills-label', {
-        scrollTrigger: {
-          trigger: '.skills-label',
-          start: 'top 80%',
-        },
-        y: 40,
-        opacity: 0,
-        duration: 0.85,
-        ease: 'power3.out',
-      });
+    // Dynamically load GSAP and run animations
+    loadGSAP().then(({ gsap, ScrollTrigger }) => {
+      const ctx = gsap.context(() => {
+        gsap.from('.skills-label', {
+          scrollTrigger: {
+            trigger: '.skills-label',
+            start: 'top 80%',
+          },
+          y: 40,
+          opacity: 0,
+          duration: 0.85,
+          ease: 'power3.out',
+        });
 
-      gsap.from('.skill-category', {
-        scrollTrigger: {
-          trigger: '.skill-category',
-          start: 'top 80%',
-        },
-        y: 40,
-        opacity: 0,
-        duration: 0.85,
-        stagger: 0.15,
-        ease: 'power3.out',
-      });
-    }, sectionRef);
+        gsap.from('.skill-category', {
+          scrollTrigger: {
+            trigger: '.skill-category',
+            start: 'top 80%',
+          },
+          y: 40,
+          opacity: 0,
+          duration: 0.85,
+          stagger: 0.15,
+          ease: 'power3.out',
+        });
+      }, sectionRef);
 
-    return () => ctx.revert();
+      return () => ctx.revert();
+    });
   }, []);
 
   const categories = [

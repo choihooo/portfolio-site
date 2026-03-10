@@ -2,8 +2,13 @@
 
 import {useTranslations} from 'next-intl';
 import {useEffect, useRef} from 'react';
-import gsap from 'gsap';
 import {ArrowDown} from 'lucide-react';
+
+// Dynamically import GSAP to reduce initial bundle size
+const loadGSAP = async () => {
+  const gsap = (await import('gsap')).default;
+  return { gsap };
+};
 
 export default function Hero() {
   const t = useTranslations('hero');
@@ -14,53 +19,56 @@ export default function Hero() {
     const prefersReducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) return;
 
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({defaults: {ease: 'power3.out'}});
+    // Dynamically load GSAP and run animations
+    loadGSAP().then(({ gsap }) => {
+      const ctx = gsap.context(() => {
+        const tl = gsap.timeline({defaults: {ease: 'power3.out'}});
 
-      tl.from('.hero-eyebrow', {
-        y: 30,
-        opacity: 0,
-        duration: 0.6,
-      })
-        .from(
-          '.hero-line1',
-          {
-            y: 60,
-            opacity: 0,
-            duration: 0.8,
-          },
-          '-=0.3'
-        )
-        .from(
-          '.hero-line2',
-          {
-            y: 60,
-            opacity: 0,
-            duration: 0.8,
-          },
-          '-=0.6'
-        )
-        .from(
-          '.hero-subtitle',
-          {
-            y: 40,
-            opacity: 0,
-            duration: 0.6,
-          },
-          '-=0.4'
-        )
-        .from(
-          '.hero-cta',
-          {
-            y: 30,
-            opacity: 0,
-            duration: 0.6,
-          },
-          '-=0.3'
-        );
-    }, heroRef);
+        tl.from('.hero-eyebrow', {
+          y: 30,
+          opacity: 0,
+          duration: 0.6,
+        })
+          .from(
+            '.hero-line1',
+            {
+              y: 60,
+              opacity: 0,
+              duration: 0.8,
+            },
+            '-=0.3'
+          )
+          .from(
+            '.hero-line2',
+            {
+              y: 60,
+              opacity: 0,
+              duration: 0.8,
+            },
+            '-=0.6'
+          )
+          .from(
+            '.hero-subtitle',
+            {
+              y: 40,
+              opacity: 0,
+              duration: 0.6,
+            },
+            '-=0.4'
+          )
+          .from(
+            '.hero-cta',
+            {
+              y: 30,
+              opacity: 0,
+              duration: 0.6,
+            },
+            '-=0.3'
+          );
+      }, heroRef);
 
-    return () => ctx.revert();
+      return () => ctx.revert();
+    });
   }, []);
 
   return (
