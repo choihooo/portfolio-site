@@ -12,6 +12,10 @@ export default function Skills() {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
+    // Check for reduced motion preference
+    const prefersReducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
     const ctx = gsap.context(() => {
       gsap.from('.skills-label', {
         scrollTrigger: {

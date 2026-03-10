@@ -63,6 +63,10 @@ export default function Projects() {
   useEffect(() => {
     if (projects.length === 0) return;
 
+    // Check for reduced motion preference
+    const prefersReducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
     const ctx = gsap.context(() => {
       gsap.from('.projects-label', {
         scrollTrigger: {
@@ -96,7 +100,7 @@ export default function Projects() {
   }, [projects]);
 
   if (projects.length === 0) {
-    return <div className="py-40 text-center text-text/60">Loading projects...</div>;
+    return <div className="py-40 text-center text-text/60" aria-live="polite">Loading projects…</div>;
   }
 
   return (
@@ -143,10 +147,11 @@ export default function Projects() {
 
                 <Link
                   href={`/${locale}/projects/${project.slug.replace(`.${locale}`, '')}`}
-                  className="inline-flex items-center gap-2 text-accent font-mono text-sm hover:gap-4 transition-all self-start md:self-center"
+                  className="inline-flex items-center gap-2 text-accent font-mono text-sm hover:gap-4 transition-all self-start md:self-center focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg rounded px-2 py-1 outline-none touch-action-manipulation"
+                  aria-label={`View ${project.frontmatter.title} project details`}
                 >
                   {t('view')}
-                  <ExternalLink size={16} />
+                  <ExternalLink size={16} aria-hidden="true" />
                 </Link>
               </div>
             </div>

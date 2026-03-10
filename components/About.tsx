@@ -13,6 +13,10 @@ export default function About() {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
+    // Check for reduced motion preference
+    const prefersReducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
     const ctx = gsap.context(() => {
       gsap.from('.about-label', {
         scrollTrigger: {
@@ -70,7 +74,7 @@ export default function About() {
       <div className="max-w-7xl mx-auto">
         <p className="about-label text-accent font-mono text-sm mb-20">{t('label')}</p>
 
-        <div className={`about-heading font-syne font-bold text-5xl md:text-7xl lg:text-8xl leading-none mb-20 ${locale === 'ja' ? 'font-noto' : ''}`}>
+        <div className={`about-heading font-syne font-bold text-5xl md:text-7xl lg:text-8xl leading-none mb-20 ${locale === 'ja' ? 'font-noto' : ''}`} style={{ textWrap: 'balance' } as React.CSSProperties}>
           <div className="line overflow-hidden">
             <span className="block">{t('heading_line1')}</span>
           </div>

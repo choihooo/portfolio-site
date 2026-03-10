@@ -19,6 +19,7 @@
 
 html {
   scroll-behavior: smooth;
+  color-scheme: dark;
 }
 
 body {
@@ -77,5 +78,15 @@ body {
   }
   .border-border {
     border-color: var(--border);
+  }
+
+  /* Touch action optimization */
+  .touch-action-manipulation {
+    touch-action: manipulation;
+  }
+
+  /* Text wrap balance for headings */
+  .text-wrap-balance {
+    text-wrap: balance;
   }
 }

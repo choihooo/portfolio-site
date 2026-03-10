@@ -7,6 +7,12 @@ export default function CustomCursor() {
   const followerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Check for reduced motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
+      return; // Don't render custom cursor if user prefers reduced motion
+    }
+
     const cursor = cursorRef.current;
     const follower = followerRef.current;
 
@@ -49,6 +55,11 @@ export default function CustomCursor() {
     };
   }, []);
 
+  // Don't render if user prefers reduced motion
+  if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    return null;
+  }
+
   return (
     <>
       <div
@@ -59,6 +70,7 @@ export default function CustomCursor() {
           mixBlendMode: 'difference',
           transform: 'translate(-50%, -50%)',
         }}
+        aria-hidden="true"
       />
       <div
         ref={followerRef}
@@ -68,6 +80,7 @@ export default function CustomCursor() {
           transform: 'translate(-50%, -50%)',
           transition: 'transform 200ms ease-out',
         }}
+        aria-hidden="true"
       />
     </>
   );

@@ -61,19 +61,20 @@ export default function Navbar() {
             <Link
               key={item.key}
               href={item.href}
-              className="nav-link text-sm font-mono text-text hover:text-accent transition-colors"
+              className="nav-link text-sm font-mono text-text hover:text-accent transition-colors focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg rounded px-2 py-1 outline-none"
             >
               {t(item.key as any)}
             </Link>
           ))}
 
           {/* Language Switcher */}
-          <div className="nav-link flex items-center gap-3 ml-6 pl-6 border-l border-border">
+          <div className="nav-link flex items-center gap-3 ml-6 pl-6 border-l border-border" role="group" aria-label="Language switcher">
             {locales.map((l) => (
               <button
                 key={l.code}
                 onClick={() => switchLocale(l.code)}
-                className={`text-xs font-mono transition-colors ${
+                aria-label={`Switch to ${l.label}`}
+                className={`text-xs font-mono transition-colors focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg rounded px-2 py-1 outline-none ${
                   locale === l.code
                     ? 'text-accent font-bold'
                     : 'text-text/60 hover:text-text'
@@ -87,8 +88,10 @@ export default function Navbar() {
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden text-text"
+          className="md:hidden text-text focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg rounded p-2 outline-none"
           onClick={() => setIsOpen(!isOpen)}
+          aria-label={isOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={isOpen}
         >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -102,19 +105,20 @@ export default function Navbar() {
               <Link
                 key={item.key}
                 href={item.href}
-                className="text-lg font-grotesk text-text hover:text-accent transition-colors"
+                className="text-lg font-grotesk text-text hover:text-accent transition-colors focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg rounded px-2 py-1 outline-none"
                 onClick={() => setIsOpen(false)}
               >
                 {t(item.key as any)}
               </Link>
             ))}
 
-            <div className="flex items-center gap-6 pt-6 border-t border-border">
+            <div className="flex items-center gap-6 pt-6 border-t border-border" role="group" aria-label="Language switcher">
               {locales.map((l) => (
                 <button
                   key={l.code}
                   onClick={() => switchLocale(l.code)}
-                  className={`text-sm font-mono transition-colors ${
+                  aria-label={`Switch to ${l.label}`}
+                  className={`text-sm font-mono transition-colors focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg rounded px-2 py-1 outline-none ${
                     locale === l.code
                       ? 'text-accent font-bold'
                       : 'text-text/60 hover:text-text'

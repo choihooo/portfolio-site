@@ -10,6 +10,10 @@ export default function Hero() {
   const heroRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
+    // Check for reduced motion preference
+    const prefersReducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({defaults: {ease: 'power3.out'}});
 
@@ -64,7 +68,7 @@ export default function Hero() {
       <div className="max-w-7xl mx-auto w-full">
         <p className="hero-eyebrow text-accent font-mono text-sm mb-8">{t('eyebrow')}</p>
 
-        <h1 className="font-syne font-bold text-6xl md:text-8xl lg:text-9xl leading-none mb-10">
+        <h1 className="font-syne font-bold text-6xl md:text-8xl lg:text-9xl leading-none mb-10" style={{ textWrap: 'balance' } as React.CSSProperties}>
           <div className="hero-line1 overflow-hidden">
             <span className="block">{t('name_line1')}</span>
           </div>
@@ -79,10 +83,10 @@ export default function Hero() {
 
         <a
           href="#projects"
-          className="hero-cta inline-flex items-center gap-2 text-accent font-mono text-sm hover:gap-4 transition-all"
+          className="hero-cta inline-flex items-center gap-2 text-accent font-mono text-sm hover:gap-4 transition-all focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg rounded px-2 py-1 outline-none touch-action-manipulation"
         >
           {t('cta')}
-          <ArrowDown size={16} className="rotate-90" />
+          <ArrowDown size={16} className="rotate-90" aria-hidden="true" />
         </a>
       </div>
     </section>

@@ -14,6 +14,10 @@ export default function Contact() {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
+    // Check for reduced motion preference
+    const prefersReducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
     const ctx = gsap.context(() => {
       gsap.from('.contact-label', {
         scrollTrigger: {
@@ -70,7 +74,7 @@ export default function Contact() {
       <div className="max-w-7xl mx-auto">
         <p className="contact-label text-accent font-mono text-sm mb-20">{t('label')}</p>
 
-        <div className={`contact-heading font-syne font-bold text-5xl md:text-7xl lg:text-8xl leading-none mb-16 ${locale === 'ja' ? 'font-noto' : ''}`}>
+        <div className={`contact-heading font-syne font-bold text-5xl md:text-7xl lg:text-8xl leading-none mb-16 ${locale === 'ja' ? 'font-noto' : ''}`} style={{ textWrap: 'balance' } as React.CSSProperties}>
           <div className="line overflow-hidden">
             <span className="block">{t('heading_line1')}</span>
           </div>
@@ -89,27 +93,30 @@ export default function Contact() {
         <div className="space-y-8">
           <a
             href="mailto:email@example.com"
-            className="contact-link flex items-center gap-4 text-text text-xl md:text-2xl font-mono hover:text-accent transition-colors group"
+            className="contact-link flex items-center gap-4 text-text text-xl md:text-2xl font-mono hover:text-accent transition-colors group focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg rounded px-2 py-1 outline-none"
+            aria-label="Send email to email@example.com"
           >
-            <Mail size={24} className="text-accent" />
+            <Mail size={24} className="text-accent" aria-hidden="true" />
             <span className="group-hover:underline">email@example.com</span>
           </a>
           <a
             href="https://github.com/username"
             target="_blank"
             rel="noopener noreferrer"
-            className="contact-link flex items-center gap-4 text-text text-xl md:text-2xl font-mono hover:text-accent transition-colors group"
+            className="contact-link flex items-center gap-4 text-text text-xl md:text-2xl font-mono hover:text-accent transition-colors group focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg rounded px-2 py-1 outline-none"
+            aria-label="Visit GitHub profile"
           >
-            <Github size={24} className="text-accent" />
+            <Github size={24} className="text-accent" aria-hidden="true" />
             <span className="group-hover:underline">{t('github_label')}</span>
           </a>
           <a
             href="https://linkedin.com/in/username"
             target="_blank"
             rel="noopener noreferrer"
-            className="contact-link flex items-center gap-4 text-text text-xl md:text-2xl font-mono hover:text-accent transition-colors group"
+            className="contact-link flex items-center gap-4 text-text text-xl md:text-2xl font-mono hover:text-accent transition-colors group focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg rounded px-2 py-1 outline-none"
+            aria-label="Visit LinkedIn profile"
           >
-            <Linkedin size={24} className="text-accent" />
+            <Linkedin size={24} className="text-accent" aria-hidden="true" />
             <span className="hover:underline">{t('linkedin_label')}</span>
           </a>
         </div>

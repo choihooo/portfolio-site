@@ -68,7 +68,12 @@ export default function ProjectsDetailClient({ project, mdxContent }: ProjectsDe
   const locale = useLocale();
   const sectionRef = useRef<HTMLDivElement>(null);
 
+  // Check for reduced motion preference
+  const prefersReducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   useEffect(() => {
+    if (prefersReducedMotion) return; // Skip animations for reduced motion preference
+
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
@@ -157,13 +162,13 @@ export default function ProjectsDetailClient({ project, mdxContent }: ProjectsDe
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <Link
             href={`/${locale}#projects`}
-            className="detail-back inline-flex items-center gap-2 text-text/60 hover:text-accent font-mono text-sm transition-colors"
+            className="detail-back inline-flex items-center gap-2 text-text/60 hover:text-accent font-mono text-sm transition-colors focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg rounded px-2 py-1 outline-none touch-action-manipulation"
           >
-            <ArrowLeft size={16} />
+            <ArrowLeft size={16} aria-hidden="true" />
             {t('back')}
           </Link>
 
-          <div className="font-syne font-bold text-xl text-accent">YN</div>
+          <div className="font-syne font-bold text-xl text-accent" aria-hidden="true">YN</div>
         </div>
       </header>
 
@@ -175,7 +180,8 @@ export default function ProjectsDetailClient({ project, mdxContent }: ProjectsDe
               <Image
                 src={project.frontmatter.heroImage}
                 alt={project.frontmatter.title}
-                fill
+                width={1600}
+                height={900}
                 className="object-cover"
                 priority
               />
@@ -260,8 +266,8 @@ export default function ProjectsDetailClient({ project, mdxContent }: ProjectsDe
 
           {/* Feature Highlights */}
           <div className="detail-meta mb-16">
-            <h2 className="font-syne font-bold text-3xl mb-8 text-text flex items-center gap-3">
-              <Zap className="text-accent" />
+            <h2 className="font-syne font-bold text-3xl mb-8 text-text flex items-center gap-3 text-wrap-balance">
+              <Zap className="text-accent" aria-hidden="true" />
               Key Features
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -318,8 +324,8 @@ export default function ProjectsDetailClient({ project, mdxContent }: ProjectsDe
           {/* Gallery */}
           {project.frontmatter.gallery && project.frontmatter.gallery.length > 0 && (
             <div className="detail-meta mb-16">
-              <h2 className="font-syne font-bold text-3xl mb-8 text-text flex items-center gap-3">
-                <ImageIcon className="text-accent" />
+              <h2 className="font-syne font-bold text-3xl mb-8 text-text flex items-center gap-3 text-wrap-balance">
+                <ImageIcon className="text-accent" aria-hidden="true" />
                 Project Gallery
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -331,7 +337,9 @@ export default function ProjectsDetailClient({ project, mdxContent }: ProjectsDe
                     <Image
                       src={image}
                       alt={`${project.frontmatter.title} screenshot ${index + 1}`}
-                      fill
+                      width={800}
+                      height={600}
+                      loading="lazy"
                       className="object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-bg/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -365,9 +373,10 @@ export default function ProjectsDetailClient({ project, mdxContent }: ProjectsDe
                 href={project.frontmatter.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="detail-link inline-flex items-center gap-3 px-8 py-4 bg-accent text-bg font-mono font-bold text-sm hover:bg-accent/90 transition-colors"
+                className="detail-link inline-flex items-center gap-3 px-8 py-4 bg-accent text-bg font-mono font-bold text-sm hover:bg-accent/90 transition-colors focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg rounded outline-none touch-action-manipulation"
+                aria-label="View live demo"
               >
-                <ExternalLink size={18} />
+                <ExternalLink size={18} aria-hidden="true" />
                 {t('liveDemo')}
               </a>
             )}
@@ -377,9 +386,10 @@ export default function ProjectsDetailClient({ project, mdxContent }: ProjectsDe
                 href={project.frontmatter.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="detail-link inline-flex items-center gap-3 px-8 py-4 border border-border text-text font-mono text-sm hover:border-accent hover:text-accent transition-colors"
+                className="detail-link inline-flex items-center gap-3 px-8 py-4 border border-border text-text font-mono text-sm hover:border-accent hover:text-accent transition-colors focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg rounded outline-none touch-action-manipulation"
+                aria-label="View source code on GitHub"
               >
-                <Github size={18} />
+                <Github size={18} aria-hidden="true" />
                 {t('sourceCode')}
               </a>
             )}
